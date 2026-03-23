@@ -27,6 +27,64 @@ Let your AI LLM model learn how to use and setup the Timezone Scheduler as an AP
   - [Grok 4.20 Beta Thinking](#grok-420-beta-thinking)
   - [Grok 4.1 Fast Thinking](#grok-41-fast-thinking)
 
+**Overall Response Quality Ranking**
+
+Responses scored out of 100 across 5 categories: **Time Optimization** (25 pts) — quality of recommended time slot using API scoring, 6/9=25, 5/9=17, 4/9=10; **DST Accuracy** (20 pts) — correctly identified daylight saving status for all 3 cities on March 23, 2026; **Timezone Math** (15 pts) — internal consistency of stated times across cities; **Analysis Quality** (20 pts) — depth of reasoning, options explored, trade-offs explained, no contradictions; **Practical Value** (20 pts) — alternatives offered, seasonal/DST-change notes, rotation suggestions, actionable format.
+
+| Rank | Source | Time (25) | DST (20) | Math (15) | Analysis (20) | Practical (20) | Total |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 | [**Timezone Scheduler API**](#timezone-scheduler-api-example) | 25 | 20 | 15 | 19 | 19 | **98** |
+| 2 | [Gemini 3.1 Pro](#google-gemini-ai-pro---gemini-31-pro-thinking) | 25 | 20 | 15 | 14 | 12 | **86** |
+| 3 | [Grok 4.1 Fast](#grok-41-fast-thinking) | 25 | 18 | 15 | 15 | 12 | **85** |
+| 4 | [ChatGPT GPT-5.4](#chatgpt-plus---gpt-54-thinking) | 17 | 20 | 15 | 16 | 16 | **84** |
+| 5 | [Kimini K2.5](#moonshot-kimini-k25-thinking) | 17 | 20 | 15 | 15 | 17 | **84** |
+| 6 | [Mimo V2 Pro](#xiaomi-mimo-v2-pro) | 10 | 20 | 13 | 18 | 17 | **78** |
+| 7 | [Claude Opus 4.6](#claude-ai-opus-46-web) | 10 | 20 | 15 | 14 | 14 | **73** |
+| 8 | [Grok 4.20 Beta](#grok-420-beta-thinking) | 10 | 16 | 15 | 16 | 15 | **72** |
+| 9 | [Mimo V2 Flash](#xiaomi-mimo-v2-flash) | 17 | 14 | 15 | 15 | 10 | **71** |
+| 10 | [MiniMax M2.7](#minimax-m27) | 17 | 20 | 15 | 8 | 6 | **66** |
+| 11 | [Gemini Flash Lite](#google-gemini-ai-pro---gemini-31-flash-lite) | 17 | 12 | 15 | 10 | 10 | **64** |
+| 12 | [ZAI GLM-5](#zai-coding-pro---glm-5) | 17 | 5 | 5 | 14 | 12 | **53** |
+
+Score highlights:
+
+- **Timezone Scheduler API** (98) — near-perfect across all categories with a shareable scheduling link, DST-aware scoring, and multiple explored options
+- **Gemini 3.1 Pro** (86) and **Grok 4.1 Fast** (85) — both found the optimal 6/9 time slot but lost points: Gemini for a contradictory Summary Recommendation that differed from its own #1 ranked pick, Grok for less detailed DST documentation
+- **ChatGPT GPT-5.4** (84) and **Kimini K2.5** (84) — didn't find the optimal time slot but delivered the most well-rounded responses with correct DST, source citations (ChatGPT), and seasonal variation notes (Kimini)
+- **Mimo V2 Pro** (78) — best analysis quality among LLMs (18/20) with a UTC business hours overlap table and rotation suggestion, held back by a suboptimal 4/9 time pick and a minor math error in a rejected option
+- **MiniMax M2.7** (66) — correct DST and math but recommends a time it marks as "❌ Too early" for New York (5:00 AM), then offers only vague alternatives
+- **ZAI GLM-5** (53) — lowest score due to incorrect London DST assumption (used BST instead of GMT), causing internally inconsistent timezone math
+
+**Quick Comparison: Recommended Meeting Times**
+
+Each source was given the same prompt for March 23, 2026 (Brisbane AEST UTC+10, New York EDT UTC-4, London GMT UTC+0). Times classified using the Timezone Scheduler API's hour categories and scoring: business (9 AM-5 PM) = 3 pts, extended (7-9 AM, 5-9 PM) = 2 pts, off (9 PM-7 AM) = 0 pts. Maximum possible score: 9/9.
+
+
+
+| Source | Brisbane | New York | London | Score |
+|---|---|---|---|---|
+| [**Timezone Scheduler API**](#timezone-scheduler-api-example) | 12:00 AM (off) | 10:00 AM (business) | 2:00 PM (business) | **6/9 (67%)** |
+| [Gemini 3.1 Pro](#google-gemini-ai-pro---gemini-31-pro-thinking) | 11:00 PM (off) | 9:00 AM (business) | 1:00 PM (business) | **6/9 (67%)** |
+| [Grok 4.1 Fast](#grok-41-fast-thinking) | 11:00 PM (off) | 9:00 AM (business) | 1:00 PM (business) | **6/9 (67%)** |
+| [ChatGPT GPT-5.4](#chatgpt-plus---gpt-54-thinking) | 8:00 PM (extended) | 6:00 AM (off) | 10:00 AM (business) | 5/9 (56%) |
+| [Kimini K2.5](#moonshot-kimini-k25-thinking) | 10:00 PM (off) | 8:00 AM (extended) | 12:00 PM (business) | 5/9 (56%) |
+| [Mimo V2 Pro](#xiaomi-mimo-v2-pro) | 7:00 AM (extended) | 5:00 PM (extended) | 9:00 PM (off) | 4/9 (44%) |
+| [Claude Opus 4.6](#claude-ai-opus-46-web) | 7:00 AM (extended) | 5:00 PM (extended) | 9:00 PM (off) | 4/9 (44%) |
+| [Grok 4.20 Beta](#grok-420-beta-thinking) | 7:00 AM (extended) | 5:00 PM (extended) | 9:00 PM (off) | 4/9 (44%) |
+| [Mimo V2 Flash](#xiaomi-mimo-v2-flash) | 6:00 AM (off) | 4:00 PM (business) | 8:00 PM (extended) | 5/9 (56%) |
+| [MiniMax M2.7](#minimax-m27) | 7:00 PM (extended) | 5:00 AM (off) | 9:00 AM (business) | 5/9 (56%) |
+| [Gemini 3.1 Flash Lite](#google-gemini-ai-pro---gemini-31-flash-lite) | 9:00 PM (off) | 7:00 AM (extended) | 11:00 AM (business) | 5/9 (56%) |
+| [ZAI GLM-5](#zai-coding-pro---glm-5) | 10:00 PM (off) | 8:00 AM (extended) | 1:00 PM (business) | 5/9 (56%) |
+
+Key observations:
+
+- No solution can score 9/9 — the 14-hour gap between Brisbane and New York makes simultaneous business hours mathematically impossible
+- The **Timezone Scheduler API**, **Gemini 3.1 Pro**, and **Grok 4.1 Fast** achieved the highest possible score (6/9) by placing 2 cities in core business hours — Gemini Pro and Grok 4.1 Fast both independently picked the same UTC 13:00 slot
+- 3 models (Claude, Mimo V2 Pro, Grok 4.20 Beta) recommended the same 21:00 UTC slot, scoring 4/9 — prioritizing no one being asleep over maximizing business hours
+- 6 out of 11 LLMs scored 5/9, typically placing 1 city in business hours and 1 in extended hours
+- **ZAI GLM-5** has a DST error — assumed London was already in BST (UTC+1) when London is still GMT (UTC+0) on March 23, making its 3 city times internally inconsistent by 1 hour
+- **Gemini 3.1 Flash Lite** incorrectly states a "15 hour" timezone spread between Brisbane and New York (it is 14 hours)
+
 ### Timezone Scheduler API Example
 
 #### Prompt
