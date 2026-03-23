@@ -48,11 +48,14 @@ Comparison native AI LLM model responses
 - [Claude AI Opus 4.6 Web](#claude-ai-opus-46-web)
 - [ChatGPT Plus - GPT-5.4 Thinking](#chatgpt-plus---gpt-54-thinking)
 - [Google Gemini AI Pro - Gemini 3.1 Pro Thinking](#google-gemini-ai-pro---gemini-31-pro-thinking)
+- [Google Gemini AI Pro - Gemini 3.1 Flash Lite](#google-gemini-ai-pro---gemini-31-flash-lite)
 - [ZAI Coding Pro - GLM-5](#zai-coding-pro---glm-5)
 - [MiniMax M2.7](#minimax-m27)
 - [Moonshot Kimini K2.5 Thinking](#moonshot-kimini-k25-thinking)
 - [Xiaomi Mimo V2 Pro](#xiaomi-mimo-v2-pro)
 - [Xiaomi Mimo V2 Flash](#xiaomi-mimo-v2-flash)
+- [Grok 4.20 Beta Thinking](#grok-420-beta-thinking)
+- [Grok 4.1 Fast Thinking](#grok-41-fast-thinking)
 
 #### Claude AI Opus 4.6 Web
 
@@ -159,6 +162,53 @@ This slot is ideal for those in London and Brisbane, but it is very difficult fo
 ##### Summary Recommendation
 
 The most "equitable" time is usually **12:00 PM London / 8:00 AM New York / 10:00 PM Brisbane**. In this scenario, London is in their mid-day, New York is just starting or slightly before their formal start, and Brisbane is at the end of their evening rather than the middle of the night.
+
+#### Google Gemini AI Pro - Gemini 3.1 Flash Lite
+
+To determine an optimal meeting time, let's analyze the time zone differences relative to UTC:
+
+- **Brisbane (AEST):** UTC+10
+- **London (GMT/BST):** UTC+0 or UTC+1 (Depending on Daylight Saving)
+- **New York (EST/EDT):** UTC-5 or UTC-4 (Depending on Daylight Saving)
+
+Current date is March 23, 2026. At this time, all three locations are observing their respective standard or daylight savings times (Note: March 23 is typically the transition period).
+
+##### The Challenge
+
+There is a significant geographic spread. When it is morning in Brisbane, it is overnight in New York and London. When it is business hours in New York, it is late evening/night in Brisbane.
+
+**Viable Options:**
+
+- **Option 1: Brisbane Morning / London Evening / New York Afternoon (Previous Day)**
+  - *Trade-off:* Requires someone to meet outside traditional 9-5 hours.
+- **Option 2: Brisbane Late Evening / London Morning / New York Early Morning**
+  - *Trade-off:* Brisbane stays up very late, New York starts very early.
+- **Option 3: Rotating shifts**
+  - *Trade-off:* No one suffers all the time, but it lacks consistency.
+
+##### Analysis and Recommendation
+
+Mathematically, a 9-5 overlap for all three cities is impossible. The total spread is 15 hours (Brisbane is 15 hours ahead of New York).
+
+**Recommendation: The "Bridge" Slot**
+
+The most viable compromise is usually early morning for one party and late evening for the other.
+
+- **Proposed Time:** 07:00 AM (New York) / 11:00 AM (London) / 09:00 PM (Brisbane)
+- **Why this works:**
+  - **New York (EST):** 7:00 AM (Early start, but professional).
+  - **London (GMT):** 11:00 AM (Mid-morning, prime business time).
+  - **Brisbane (AEST):** 9:00 PM (Late evening, but manageable for a single meeting).
+
+This aligns London and New York perfectly within their respective business days while asking the Brisbane participant to take the meeting at the end of their day.
+
+**Alternative (The "Other Way"):**
+
+- **Proposed Time:** 10:00 PM (New York) / 2:00 AM (London) / 12:00 PM (Brisbane)
+- **Why this is usually worse:** This forces London into the middle of the night, which is significantly more disruptive than a late evening in Brisbane.
+
+**Conclusion:**
+Aim for **07:00 AM (New York) / 11:00 AM (London) / 09:00 PM (Brisbane)**. It is the most sustainable slot that allows at least two parties to be in standard business hours and requires the third to work outside of them without being in the middle of the night.
 
 #### ZAI Coding Pro - GLM-5
 
@@ -386,3 +436,35 @@ I recommend **20:00 UTC** as the most optimal time. This minimizes the maximum d
 - London: 8:00 PM GMT  
 - New York: 4:00 PM EDT  
 - Brisbane: 6:00 AM AEST (next day)
+
+#### Grok 4.20 Beta Thinking
+
+**Viable options:**
+
+- **13:00 UTC (9am NY, 1pm London, 11pm Brisbane)**: Strong core business hours for New York and London; Brisbane is very late. Trade-off: two cities optimal, one significantly disrupted.
+- **22:00 UTC (8am Brisbane, 6pm NY, 10pm London)**: Good start for Brisbane, acceptable end-of-day for NY, late for London. Trade-off: favors the Australian user but pushes London past normal hours.
+- **21:00 UTC (7am Brisbane, 5pm NY, 9pm London)**: Brisbane in early business hours, NY at end of business, London slightly after hours. Trade-off: all times fall within extended reasonable working window (7am–9pm local).
+- **Alternating times across the three slots above**: Shares inconvenience fairly over multiple meetings. Trade-off: requires more scheduling coordination.
+
+**Chosen approach:** 21:00 UTC (7am Brisbane, 5pm New York, 9pm London).  
+This is the most optimal single time because it keeps every participant within an extended but workable window (7am–9pm local), avoids anyone being awake at midnight or later, and balances the load rather than heavily favoring two cities at the expense of the third.
+
+**Recommended meeting time:**
+
+- **Brisbane**: 7:00 AM AEST
+- **New York**: 5:00 PM EDT
+- **London**: 9:00 PM GMT
+
+This works on the current date (23 March 2026) and most days in this season. For recurring meetings, consider rotating between the top two options every other meeting to maintain fairness.
+
+#### Grok 4.1 Fast Thinking
+
+##### Viable Options (UTC times, assuming Mar 2026: Brisbane AEST UTC+10, New York EDT UTC-4, London GMT UTC+0)
+
+- **13:00 UTC** (NY 09:00, London 13:00, Brisbane 23:00): NY & London in business hours; Brisbane 6h after close (evening). Good balance, favors awake evening over sleep.
+- **14:00 UTC** (NY 10:00, London 14:00, Brisbane 00:00): NY & London in business; Brisbane 7h after close (midnight). Slightly worse offset for Brisbane.
+- **17:00 UTC** (NY 13:00, London 17:00, Brisbane 03:00): NY & London in business; Brisbane 6h before open (early morning). Sleep disruption risk.
+- **09:00 UTC** (NY 05:00, London 09:00, Brisbane 19:00): London in business; NY early, Brisbane after hours. Only one in business.
+- **21:00 UTC** (NY 17:00, London 21:00, Brisbane 07:00): NY in business; others after/before. Only one in business.
+
+**Chosen: 13:00 UTC** (NY 09:00 EDT, London 13:00 GMT, Brisbane 23:00 AEST). Maximizes participants in business hours (2/3), with Brisbane's offset being evening (post-work) rather than predawn sleep interruption. No triple overlap possible due to 14h NY-Brisbane span. For a 1-2h meeting, extend to 13:00-15:00 UTC (Brisbane 23:00-01:00). Adjust for DST changes (e.g., London BST from Mar 29).
