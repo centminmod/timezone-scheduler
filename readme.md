@@ -6,19 +6,40 @@ The Timezone Scheduler helps coordinate meetings across global timezones. It cla
 
 Let your AI LLM model learn how to use and setup the Timezone Scheduler as an API tool, AI Skill.md or MCP server by feeding the AI <https://timezones.centminmod.com/llms.txt>.
 
-## Timezone Scheduler API Example
+## Examples
 
-### Prompt
+**Table of Contents**
+
+- [Timezone Scheduler API Example](#timezone-scheduler-api-example)
+  - [Prompt](#prompt)
+  - [Thinking](#thinking)
+  - [Response](#response)
+- [Comparison LLM Timezone Responses](#comparison-llm-timezone-responses)
+  - [Claude AI Opus 4.6 Web](#claude-ai-opus-46-web)
+  - [ChatGPT Plus - GPT-5.4 Thinking](#chatgpt-plus---gpt-54-thinking)
+  - [Google Gemini AI Pro - Gemini 3.1 Pro Thinking](#google-gemini-ai-pro---gemini-31-pro-thinking)
+  - [Google Gemini AI Pro - Gemini 3.1 Flash Lite](#google-gemini-ai-pro---gemini-31-flash-lite)
+  - [ZAI Coding Pro - GLM-5](#zai-coding-pro---glm-5)
+  - [MiniMax M2.7](#minimax-m27)
+  - [Moonshot Kimini K2.5 Thinking](#moonshot-kimini-k25-thinking)
+  - [Xiaomi Mimo V2 Pro](#xiaomi-mimo-v2-pro)
+  - [Xiaomi Mimo V2 Flash](#xiaomi-mimo-v2-flash)
+  - [Grok 4.20 Beta Thinking](#grok-420-beta-thinking)
+  - [Grok 4.1 Fast Thinking](#grok-41-fast-thinking)
+
+### Timezone Scheduler API Example
+
+#### Prompt
 
 > Find the most optimal meeting time that works across Brisbane (Australia), New York (USA), and London (UK), ideally falling within business hours for all three cities, or as close to business hours as possible.
 
-### Thinking
+#### Thinking
 
 The suggest API returned the top 5 suggestions, all with score 6/9 (67%). The best it can do is have 2 out of 3 in business hours, with Brisbane always in "off" hours. Let me also try with a different source timezone to see if there's a better option, or let me try scheduling from different perspectives.
 Actually, the API already optimized across all three. The fundamental challenge is that Brisbane (AEST, UTC+10) is far ahead of both New York (EDT, UTC-4) and London (GMT, UTC+0). That's a 14-hour gap between Brisbane and New York, which makes full business-hours overlap impossible.
 Let me explore if pushing to early morning Brisbane times—around 7 AM—might qualify as extended hours instead of off-hours, though the math shows this still lands outside business windows for the other locations.
 
-### Response
+#### Response
 
 Now I'll use the `suggest` API to find optimal meeting times across all three cities.The `suggest` API's best results put Brisbane at midnight. Let me also check early-morning Brisbane slots that might land in "extended" hours, which the suggest endpoint may have ranked lower but could be more practical.Now let me check one more option to confirm the tradeoffs: scheduling from London's morning.Here's the full analysis based on the API results.
 
@@ -41,7 +62,7 @@ If Brisbane absolutely cannot do midnight, **Option B (7:00 AM Brisbane)** is th
 Shareable scheduling link for Option A: [View in Timezone Scheduler](https://timezones.centminmod.com/?m=eyJ2IjoyLCJmIjoiQXVzdHJhbGlhL0JyaXNiYW5lIiwiZCI6IjIwMjYtMDMtMjMiLCJoIjo3LCJtIjowLCJ0cyI6W3sidCI6IkFtZXJpY2EvTmV3X1lvcmsiLCJuIjoiTmV3IFlvcmsifSx7InQiOiJFdXJvcGUvTG9uZG9uIiwibiI6IkxvbmRvbiJ9XX0)
 
 
-### Timezone Scheduler API Responses
+### Comparison LLM Timezone Responses
 
 Comparison native AI LLM model responses
 
