@@ -87,6 +87,25 @@ Key observations:
 
 ### Timezone Scheduler API Example
 
+Update: after this benchmark, I made an improvement update to Timezones Scheduler API. I added a **Comfort score:** which is the circular distance from 3 AM (scale 0–12) used as a maximin tie-break so that when suggest slots tie on business-hours score, the slot where the worst-off participant has the most civil hour wins — making 11 PM rank above midnight and 9 PM above 2 AM.
+
+```bash
+curl -sf "https://timezones.centminmod.com/schedule/api?action=suggest&from=Australia/Brisbane&to=America/New_York&to=Europe/London&date=2026-03-23" | python3 -c "
+import sys,json
+d=json.load(sys.stdin)
+for i,s in enumerate(d['suggestions']):
+    src = s['sourceTime24h']
+    mc = s['minComfort']
+    parts = ' | '.join(f\"{t['name']} {t['time24h']} ({t['businessHours']})\" for t in s['times'])
+    print(f'{i+1}. {src} [comfort={mc}] {parts}')
+"
+1. 23:00 [comfort=4] Brisbane 23:00 (off) | New York 09:00 (business) | London 13:00 (business)
+2. 23:15 [comfort=4] Brisbane 23:15 (off) | New York 09:15 (business) | London 13:15 (business)
+3. 23:30 [comfort=4] Brisbane 23:30 (off) | New York 09:30 (business) | London 13:30 (business)
+4. 23:45 [comfort=4] Brisbane 23:45 (off) | New York 09:45 (business) | London 13:45 (business)
+5. 00:00 [comfort=3] Brisbane 00:00 (off) | New York 10:00 (business) | London 14:00 (business)
+```
+
 #### Prompt
 
 > Find the most optimal meeting time that works across Brisbane (Australia), New York (USA), and London (UK), ideally falling within business hours for all three cities, or as close to business hours as possible.
