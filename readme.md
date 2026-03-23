@@ -33,23 +33,25 @@ Responses scored out of 100 across 5 categories: **Time Optimization** (25 pts) 
 
 | Rank | Source | Time (25) | DST (20) | Math (15) | Analysis (20) | Practical (20) | Total |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | [**Timezone Scheduler API**](#timezone-scheduler-api-example) | 25 | 20 | 15 | 19 | 19 | **98** |
-| 2 | [Gemini 3.1 Pro](#google-gemini-ai-pro---gemini-31-pro-thinking) | 25 | 20 | 15 | 14 | 12 | **86** |
-| 3 | [Grok 4.1 Fast](#grok-41-fast-thinking) | 25 | 18 | 15 | 15 | 12 | **85** |
-| 4 | [ChatGPT GPT-5.4](#chatgpt-plus---gpt-54-thinking) | 17 | 20 | 15 | 16 | 16 | **84** |
-| 5 | [Kimini K2.5](#moonshot-kimini-k25-thinking) | 17 | 20 | 15 | 15 | 17 | **84** |
-| 6 | [Mimo V2 Pro](#xiaomi-mimo-v2-pro) | 10 | 20 | 13 | 18 | 17 | **78** |
-| 7 | [Claude Opus 4.6](#claude-ai-opus-46-web) | 10 | 20 | 15 | 14 | 14 | **73** |
-| 8 | [Grok 4.20 Beta](#grok-420-beta-thinking) | 10 | 16 | 15 | 16 | 15 | **72** |
-| 9 | [Mimo V2 Flash](#xiaomi-mimo-v2-flash) | 17 | 14 | 15 | 15 | 10 | **71** |
-| 10 | [MiniMax M2.7](#minimax-m27) | 17 | 20 | 15 | 8 | 6 | **66** |
-| 11 | [Gemini Flash Lite](#google-gemini-ai-pro---gemini-31-flash-lite) | 17 | 12 | 15 | 10 | 10 | **64** |
-| 12 | [ZAI GLM-5](#zai-coding-pro---glm-5) | 17 | 5 | 5 | 14 | 12 | **53** |
+| 1 | [**Timezone Scheduler API (updated)**](#timezone-scheduler-api-example) | 25 | 20 | 15 | 20 | 20 | **100** |
+| 2 | [Timezone Scheduler API](#timezone-scheduler-api-example) | 25 | 20 | 15 | 19 | 19 | **98** |
+| 3 | [Gemini 3.1 Pro](#google-gemini-ai-pro---gemini-31-pro-thinking) | 25 | 20 | 15 | 14 | 12 | **86** |
+| 4 | [Grok 4.1 Fast](#grok-41-fast-thinking) | 25 | 18 | 15 | 15 | 12 | **85** |
+| 5 | [ChatGPT GPT-5.4](#chatgpt-plus---gpt-54-thinking) | 17 | 20 | 15 | 16 | 16 | **84** |
+| 6 | [Kimini K2.5](#moonshot-kimini-k25-thinking) | 17 | 20 | 15 | 15 | 17 | **84** |
+| 7 | [Mimo V2 Pro](#xiaomi-mimo-v2-pro) | 10 | 20 | 13 | 18 | 17 | **78** |
+| 8 | [Claude Opus 4.6](#claude-ai-opus-46-web) | 10 | 20 | 15 | 14 | 14 | **73** |
+| 9 | [Grok 4.20 Beta](#grok-420-beta-thinking) | 10 | 16 | 15 | 16 | 15 | **72** |
+| 10 | [Mimo V2 Flash](#xiaomi-mimo-v2-flash) | 17 | 14 | 15 | 15 | 10 | **71** |
+| 11 | [MiniMax M2.7](#minimax-m27) | 17 | 20 | 15 | 8 | 6 | **66** |
+| 12 | [Gemini Flash Lite](#google-gemini-ai-pro---gemini-31-flash-lite) | 17 | 12 | 15 | 10 | 10 | **64** |
+| 13 | [ZAI GLM-5](#zai-coding-pro---glm-5) | 17 | 5 | 5 | 14 | 12 | **53** |
 
 Score highlights:
 
-- **Timezone Scheduler API** (98) — near-perfect across all categories with a shareable scheduling link, DST-aware scoring, and multiple explored options
-- **Gemini 3.1 Pro** (86) and **Grok 4.1 Fast** (85) — both found the optimal 6/9 time slot but lost points: Gemini for a contradictory Summary Recommendation that differed from its own #1 ranked pick, Grok for less detailed DST documentation
+- **Timezone Scheduler API (updated)** (100) — perfect score after adding a comfort tie-break that formally optimizes for civil hours when business-hours scores are tied, automatically shifting the recommendation from midnight to 11 PM Brisbane
+- **Timezone Scheduler API** (98) — the original benchmark response before the comfort score update; near-perfect with a shareable scheduling link, DST-aware scoring, and multiple explored options — docked only for recommending midnight (comfort=3) over 11 PM (comfort=4)
+- **Gemini 3.1 Pro** (86) and **Grok 4.1 Fast** (85) — both found the optimal 6/9 time slot and independently chose the UTC 13:00 slot (now validated by the API's comfort tie-break) but lost points: Gemini for a contradictory Summary Recommendation that differed from its own #1 ranked pick, Grok for less detailed DST documentation
 - **ChatGPT GPT-5.4** (84) and **Kimini K2.5** (84) — didn't find the optimal time slot but delivered the most well-rounded responses with correct DST, source citations (ChatGPT), and seasonal variation notes (Kimini)
 - **Mimo V2 Pro** (78) — best analysis quality among LLMs (18/20) with a UTC business hours overlap table and rotation suggestion, held back by a suboptimal 4/9 time pick and a minor math error in a rejected option
 - **MiniMax M2.7** (66) — correct DST and math but recommends a time it marks as "❌ Too early" for New York (5:00 AM), then offers only vague alternatives
@@ -57,31 +59,35 @@ Score highlights:
 
 **Quick Comparison: Recommended Meeting Times**
 
-Each source was given the same prompt for March 23, 2026 (Brisbane AEST UTC+10, New York EDT UTC-4, London GMT UTC+0). Times classified using the Timezone Scheduler API's hour categories and scoring: business (9 AM-5 PM) = 3 pts, extended (7-9 AM, 5-9 PM) = 2 pts, off (9 PM-7 AM) = 0 pts. Maximum possible score: 9/9.
+Each source was given the same prompt for March 23, 2026 (Brisbane AEST UTC+10, New York EDT UTC-4, London GMT UTC+0). Times classified using the Timezone Scheduler API's hour categories and scoring: business (9 AM-5 PM) = 3 pts, extended (7-9 AM, 5-9 PM) = 2 pts, off (9 PM-7 AM) = 0 pts. Maximum possible score: 9/9. Comfort score: circular distance from 3 AM (scale 0-12) for the worst-off participant — used as a tie-break when business-hours scores are equal. Higher = more civil hour.
 
 
 
-| Source | Brisbane | New York | London | Score |
-|---|---|---|---|---|
-| [**Timezone Scheduler API**](#timezone-scheduler-api-example) | 12:00 AM (off) | 10:00 AM (business) | 2:00 PM (business) | **6/9 (67%)** |
-| [Gemini 3.1 Pro](#google-gemini-ai-pro---gemini-31-pro-thinking) | 11:00 PM (off) | 9:00 AM (business) | 1:00 PM (business) | **6/9 (67%)** |
-| [Grok 4.1 Fast](#grok-41-fast-thinking) | 11:00 PM (off) | 9:00 AM (business) | 1:00 PM (business) | **6/9 (67%)** |
-| [ChatGPT GPT-5.4](#chatgpt-plus---gpt-54-thinking) | 8:00 PM (extended) | 6:00 AM (off) | 10:00 AM (business) | 5/9 (56%) |
-| [Kimini K2.5](#moonshot-kimini-k25-thinking) | 10:00 PM (off) | 8:00 AM (extended) | 12:00 PM (business) | 5/9 (56%) |
-| [Mimo V2 Pro](#xiaomi-mimo-v2-pro) | 7:00 AM (extended) | 5:00 PM (extended) | 9:00 PM (off) | 4/9 (44%) |
-| [Claude Opus 4.6](#claude-ai-opus-46-web) | 7:00 AM (extended) | 5:00 PM (extended) | 9:00 PM (off) | 4/9 (44%) |
-| [Grok 4.20 Beta](#grok-420-beta-thinking) | 7:00 AM (extended) | 5:00 PM (extended) | 9:00 PM (off) | 4/9 (44%) |
-| [Mimo V2 Flash](#xiaomi-mimo-v2-flash) | 6:00 AM (off) | 4:00 PM (business) | 8:00 PM (extended) | 5/9 (56%) |
-| [MiniMax M2.7](#minimax-m27) | 7:00 PM (extended) | 5:00 AM (off) | 9:00 AM (business) | 5/9 (56%) |
-| [Gemini 3.1 Flash Lite](#google-gemini-ai-pro---gemini-31-flash-lite) | 9:00 PM (off) | 7:00 AM (extended) | 11:00 AM (business) | 5/9 (56%) |
-| [ZAI GLM-5](#zai-coding-pro---glm-5) | 10:00 PM (off) | 8:00 AM (extended) | 1:00 PM (business) | 5/9 (56%) |
+| Source | Brisbane | New York | London | Score | Comfort |
+|---|---|---|---|---|---|
+| [**Timezone Scheduler API (updated)**](#timezone-scheduler-api-example) | 11:00 PM (off) | 9:00 AM (business) | 1:00 PM (business) | **6/9 (67%)** | **4** |
+| [Timezone Scheduler API](#timezone-scheduler-api-example) | 12:00 AM (off) | 10:00 AM (business) | 2:00 PM (business) | **6/9 (67%)** | 3 |
+| [Gemini 3.1 Pro](#google-gemini-ai-pro---gemini-31-pro-thinking) | 11:00 PM (off) | 9:00 AM (business) | 1:00 PM (business) | **6/9 (67%)** | **4** |
+| [Grok 4.1 Fast](#grok-41-fast-thinking) | 11:00 PM (off) | 9:00 AM (business) | 1:00 PM (business) | **6/9 (67%)** | **4** |
+| [ChatGPT GPT-5.4](#chatgpt-plus---gpt-54-thinking) | 8:00 PM (extended) | 6:00 AM (off) | 10:00 AM (business) | 5/9 (56%) | 3 |
+| [Kimini K2.5](#moonshot-kimini-k25-thinking) | 10:00 PM (off) | 8:00 AM (extended) | 12:00 PM (business) | 5/9 (56%) | **5** |
+| [Mimo V2 Pro](#xiaomi-mimo-v2-pro) | 7:00 AM (extended) | 5:00 PM (extended) | 9:00 PM (off) | 4/9 (44%) | 4 |
+| [Claude Opus 4.6](#claude-ai-opus-46-web) | 7:00 AM (extended) | 5:00 PM (extended) | 9:00 PM (off) | 4/9 (44%) | 4 |
+| [Grok 4.20 Beta](#grok-420-beta-thinking) | 7:00 AM (extended) | 5:00 PM (extended) | 9:00 PM (off) | 4/9 (44%) | 4 |
+| [Mimo V2 Flash](#xiaomi-mimo-v2-flash) | 6:00 AM (off) | 4:00 PM (business) | 8:00 PM (extended) | 5/9 (56%) | 3 |
+| [MiniMax M2.7](#minimax-m27) | 7:00 PM (extended) | 5:00 AM (off) | 9:00 AM (business) | 5/9 (56%) | 2 |
+| [Gemini 3.1 Flash Lite](#google-gemini-ai-pro---gemini-31-flash-lite) | 9:00 PM (off) | 7:00 AM (extended) | 11:00 AM (business) | 5/9 (56%) | 4 |
+| [ZAI GLM-5](#zai-coding-pro---glm-5) | 10:00 PM (off) | 8:00 AM (extended) | 1:00 PM (business) | 5/9 (56%) | 5 |
 
 Key observations:
 
 - No solution can score 9/9 — the 14-hour gap between Brisbane and New York makes simultaneous business hours mathematically impossible
 - The **Timezone Scheduler API**, **Gemini 3.1 Pro**, and **Grok 4.1 Fast** achieved the highest possible score (6/9) by placing 2 cities in core business hours — Gemini Pro and Grok 4.1 Fast both independently picked the same UTC 13:00 slot
+- With the comfort tie-break, the updated API now picks 11 PM Brisbane (comfort=4) over midnight (comfort=3) — its top pick now matches what Gemini Pro and Grok 4.1 Fast independently chose (UTC 13:00)
 - 3 models (Claude, Mimo V2 Pro, Grok 4.20 Beta) recommended the same 21:00 UTC slot, scoring 4/9 — prioritizing no one being asleep over maximizing business hours
 - 6 out of 11 LLMs scored 5/9, typically placing 1 city in business hours and 1 in extended hours
+- **Kimini K2.5** has the highest comfort score (5) among all entries despite only scoring 5/9 on business hours — it optimized for civil hours over business hours
+- **MiniMax M2.7** has the lowest comfort (2) due to NY at 5:00 AM being closest to the 3 AM nadir
 - **ZAI GLM-5** has a DST error — assumed London was already in BST (UTC+1) when London is still GMT (UTC+0) on March 23, making its 3 city times internally inconsistent by 1 hour
 - **Gemini 3.1 Flash Lite** incorrectly states a "15 hour" timezone spread between Brisbane and New York (it is 14 hours)
 
