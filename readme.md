@@ -6,6 +6,8 @@ The Timezone Scheduler helps coordinate meetings across global timezones. It cla
 
 Let your AI LLM model learn how to use and setup the Timezone Scheduler as an API tool, AI Skill.md or MCP server by feeding the AI <https://timezones.centminmod.com/llms.txt>.
 
+**Update:** See [readme-v2.md](readme-v2.md) for new benchmark comparisons with Google Gemma 4 31B, Qwen 3.6 Plus, GLM-5 Turbo, GLM-5V Turbo, Claude Code + Opus 4.6 1M.
+
 ## Examples
 
 **Table of Contents**
